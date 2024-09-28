@@ -52,20 +52,20 @@ And the letters of the alphabets from 'a' to 'z' in english are 26. So a few bit
 If there is any duplicated, the bit will be 1. So is there a problem with that? Is that a break in the algorithm?
 
 #### Triple or more of the same character
-Let's say we are working with the first input: `mjqjpqmgbljsphdztnvjfqwrcgsmlb`. This input has 3 j on the start, so is a perfect example.
-We start with a set of 0 bits (32 bits):
-00000000000000000000000000000000
-m equals 109. 109 % 32 = 13
-So 13 from right to left is ( filter ^= 1 << 13 ):
-00000000000000000010000000000000
-It should be a position more on the right, because we are starting at the first position, but it doesn't matter. If the assignation is consistent it works.
-Let's continue, j = 106 => 106 % 32 = 10 => filter ^= 1 << 10:
-00000000000000000010010000000000
-Adding 'q' now => 'q' = 113 => 113 % 32 = 17 => filter ^= 1 << 17:
-00000000000000100010010000000000
-Adding 'j' again => 'j' = 106:
-00000000000000100000010000000000
-We are added 4 characters so far, but the duplicated is found. We only count two 1 at this moment. That means that if a third one is added, the count will be 3,
-but we are across the fifth character. If we check the condition validating if the count is 14, it will be not.
-If we pick the first 14 characters, the final filter will have less characters because of duplicates or triplicates (or more). And the condition will be not be met.
-In this case, because the count always will be less than 14, the only way to go back to 14, is to removing duplicates, that means, transforming 0 to 1 at the moment that the last element is XORed (new word :P)
+Let's say we are working with the first input: `mjqjpqmgbljsphdztnvjfqwrcgsmlb`. This input has 3 j on the start, so is a perfect example.\n
+We start with a set of 0 bits (32 bits):\n
+00000000000000000000000000000000\n
+m equals 109. 109 % 32 = 13\n
+So 13 from right to left is ( filter ^= 1 << 13 ):\n
+00000000000000000010000000000000\n
+It should be a position more on the right, because we are starting at the first position, but it doesn't matter. If the assignation is consistent it works.\n
+Let's continue, j = 106 => 106 % 32 = 10 => filter ^= 1 << 10:\n
+00000000000000000010010000000000\n
+Adding 'q' now => 'q' = 113 => 113 % 32 = 17 => filter ^= 1 << 17:\n
+00000000000000100010010000000000\n
+Adding 'j' again => 'j' = 106:\n
+00000000000000100000010000000000\n
+We are added 4 characters so far, but the duplicated is found. We only count two 1 at this moment. That means that if a third one is added, the count will be 3,\n
+but we are across the fifth character. If we check the condition validating if the count is 14, it will be not.\n
+If we pick the first 14 characters, the final filter will have less characters because of duplicates or triplicates (or more). And the condition will be not be met.\n
+In this case, because the count always will be less than 14, the only way to go back to 14, is to removing duplicates, that means, transforming 0 to 1 at the moment that the last element is XORed (new word :P)\n
