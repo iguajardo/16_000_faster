@@ -1,5 +1,5 @@
 # Problem
-Your device's communicatino system is is correctly detecting packets, but still isn't working. It looks like it also needs to look messages.
+Your device's communication system is correctly detecting packets, but still isn't working. It looks like it also needs to look messages.
 
 A start-of-message marker is just like a start-of-packet marker, except it consists of 14 distinct characters rather than 4.
 
@@ -15,11 +15,11 @@ How many characters need to be processed before the first start-of-message marke
 
 ## Solution
 There are many ways to solve this problem. The easiest is to use a HashSet to store all the window of 14 elements. Then check if the length is equal to 14.
-Improving this would be starting since the duplicated elemnt is found.
+Improving this would be starting since the duplicated element is found.
 A better approach is to use a dynamic array of length 14 instead of a HashSet, because the lookup for that small number of elements is faster than the set.
-Using a static array is way better becuase it's stored in the Stack instead of the Heap.
-If we use an static array of boolean, is faster. But can be improved using an int32 to store the elements from 'a' to 'z'.
-This way is preferred using a bit mask, which is faster because CPU works better with bits.
+Using a static array is way better becuase it's stored in the Stack instead of the Heap. Meaning that can be cached.
+If we use an static array of boolean, is faster. But can be improved using an int32 to store the elements from 'a' to 'z'. This is called bit mask.
+This way is preferred using a bit mask, which is faster because CPU works better with bits. With the basics operations XOR AND and OR.
 
 
 Implementation in Rust:
