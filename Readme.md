@@ -30,7 +30,6 @@ fn solution(input: &[u8]) -> Option<usize> {
         .iter() // Generate an iterator
         .take(14 - 1) // limits the iter from 0 to 12
         .for_each(|c| filter ^= 1 << (c % 32)); // for each character, push 1 to the windows of 14. If repeated a char, it will be 0
-    // if filter is all 1 (11111111111111), the result is that from the beginning. Else it will have a 0
 
     // windows generate an iterator with a windows, in this case, iter in a windows of 14. Position searchs in an Iter and returns the index of that value.
     // return true or false if found or not
