@@ -38,7 +38,7 @@ function solution(input: string) {
     filter ^= 1 << last;
 
     const count = countOnes(filter);
-    if (count === 14) return last + 1;
+    if (count === 14) return first;
 
     filter ^= 1 << first;
   }

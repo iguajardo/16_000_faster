@@ -69,3 +69,25 @@ We are added 4 characters so far, but the duplicated is found. We only count two
 but we are across the fifth character. If we check the condition validating if the count is 14, it will be not.  
 If we pick the first 14 characters, the final filter will have less characters because of duplicates or triplicates (or more). And the condition will be not be met.  
 In this case, because the count always will be less than 14, the only way to go back to 14, is to removing duplicates, that means, transforming 0 to 1 at the moment that the last element is XORed (new word :P)  
+
+## Improved Solution
+```rust
+fn solution() -> Option<usize> {
+    let mut idx = 0;
+    while let Some(slice) = input.get(idx..idx + 14) {
+        let mut state = 0u32;
+
+        if let Some(pos) = slice.iter().rposition(|byte| {
+            let bit_idx = byte % 32;
+            let ret = state & (1 << bit_idex) != 0;
+            state |= 1 << bit_idx;
+            ret
+        }) {
+            idx += pos + 1;
+        } else {
+            return Some(idx);
+        }
+    }
+    return None;
+}
+```
